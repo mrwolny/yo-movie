@@ -1,0 +1,40 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/yo-movies
+
+    docker:
+      - image: circleci/node:8.10
+
+    steps:
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - dependencies-cache-{{ checksum "yarn.lock" }}
+            # fallback to using the latest cache if no exact match is found
+            - dependencies-cache
+
+      - run:
+          name: Install Serverless CLI and dependencies
+          command: sudo npm i -g serverless
+
+      - run:
+          name: Bootstrap packages
+          command: yarn install
+
+      # run tests
+      - run:
+          name: Run tests with code coverage
+          command: yarn test --coverage
+
+      # deploy app
+      - run:
+          name: Deploy application
+          command: yarn deploy
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: dependencies-cache-{{ checksum "package.json" }}

@@ -1,0 +1,17 @@
+{
+  "name": "yo-api-tmdb",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^23.6.0",
+    "serverless-offline": "^3.32.1"
+  },
+  "scripts": {
+    "deploy": "sls deploy",
+    "test": "jest"
+  },
+  "dependencies": {
+    "superagent": "^4.1.0"
+  }
+}

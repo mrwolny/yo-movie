@@ -1,0 +1,19 @@
+# package directories
+node_modules
+jspm_packages
+
+# Serverless directories
+.serverless
+
+dist
+
+.vscode
+
+.webpack
+
+public/bundle*
+git
+
+coverage
+
+yarn-error.log

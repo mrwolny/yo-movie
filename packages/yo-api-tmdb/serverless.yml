@@ -1,0 +1,30 @@
+service: yo-api-tmdb
+
+frameworkVersion: ">=1.35.0 <2.0.0"
+
+custom:
+  stage: ${opt:stage, self:provider.stage}
+  region: ${opt:region, self:provider.region}
+
+plugins:
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: dev
+  region: us-east-1
+
+  apiGateway:
+    restApiId:
+      Fn::ImportValue: ${self:custom.stage}-YoMovieApiGatewayRestApiId
+    restApiRootResourceId:
+      Fn::ImportValue: ${self:custom.stage}-YoMovieApiGatewayRestApiRootResourceId
+
+functions:
+  hello:
+    handler: handler.config
+    events:
+      - http:
+          path: tmdb/config
+          method: get

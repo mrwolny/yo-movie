@@ -1,0 +1,12 @@
+{
+  "name": "root",
+  "private": true,
+  "devDependencies": {
+    "lerna": "^3.10.2"
+  },
+  "scripts": {
+    "install": "lerna bootstrap -- --frozen-lockfile",
+    "test": "lerna exec -- yarn test",
+    "deploy": "lerna exec -- sls deploy --scope yo-fe && lerna exec -- sls deploy --ignore yo-fe"
+  }
+}
