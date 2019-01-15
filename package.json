@@ -2,11 +2,17 @@
   "name": "root",
   "private": true,
   "devDependencies": {
+    "eslint": "5.3.0",
+    "eslint-config-airbnb": "17.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.11.0",
     "lerna": "^3.10.2"
   },
   "scripts": {
     "install": "lerna bootstrap -- --frozen-lockfile",
     "test": "lerna exec -- yarn test",
-    "deploy": "lerna exec --scope yo-fe sls deploy && lerna exec --ignore yo-fe sls deploy"
+    "deploy": "lerna exec --scope yo-fe sls deploy && lerna exec --ignore yo-fe sls deploy",
+    "lint": "lerna exec --no-bail -- eslint . --ignore-path .gitignore"
   }
 }

@@ -1,3 +1,4 @@
+/* eslint-disable */
 var webpack = require('webpack')
 const slsw = require('serverless-webpack');
 var nodeExternals = require('webpack-node-externals')

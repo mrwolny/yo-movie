@@ -1,8 +1,8 @@
-import React, { Component} from "react";
+import React, { Component } from 'react';
 
-import "./App.css";
+import './App.css';
 
-class App extends Component{
+class App extends Component {
   constructor(props) {
     super(props);
 
@@ -14,21 +14,21 @@ class App extends Component{
   componentDidMount() {
     fetch('tmdb/config')
       .then((data) => {
-        console.log('data', data);
-
         this.setState({
-          data
+          data,
         });
-      })
+      });
   }
 
-  render(){
-    return(
+  render() {
+    const { data } = this.state;
+
+    return (
       <div className="App">
         <h1>YO!</h1>
 
-        <img src="https://www.fillmurray.com/600/1000" />
-        <img src="https://www.fillmurray.com/600/1000" />
+        <img alt="yo murray" src="https://www.fillmurray.com/600/1000" />
+        <pre>{data}</pre>
       </div>
     );
   }
