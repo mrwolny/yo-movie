@@ -2,12 +2,12 @@ service: yo-api-tmdb
 
 frameworkVersion: ">=1.35.0 <2.0.0"
 
+plugins:
+  - serverless-offline
+
 custom:
   stage: ${opt:stage, self:provider.stage}
   region: ${opt:region, self:provider.region}
-
-plugins:
-  - serverless-offline
 
 provider:
   name: aws

@@ -98,3 +98,9 @@ resources:
         Fn::GetAtt: [YoCloudFront, DomainName]
       Export:
         Name: ${self:custom.stage}-YoMovieCloudFront
+
+    YoCloudFrontDistribiutionId:
+      Value:
+        Ref: YoCloudFront
+      Export:
+        Name: ${self:custom.stage}-YoCloudFrontDistribiutionId

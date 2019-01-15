@@ -1,3 +1,5 @@
 # YO!
 
+## Install
 
+Use `yarn`

@@ -27,7 +27,7 @@ app.get('*', (req, res) => {
 
     const results = data.replace('<div id="root"></div>', `<div id="root">${app}</div>`);
 
-    res.set('Max-Age', 60);
+    res.set('Cache-Control', 'public, max-age=60');
     res.send(
       results
     );
