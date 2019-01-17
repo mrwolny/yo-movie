@@ -16,13 +16,20 @@ custom:
     includeModules: true
   scripts:
     hooks:
-      'package:initialize': yarn rimraf dist && yarn webpack --config webpack.client.js
+      'package:initialize':
+        yarn rimraf dist && API_KEY=${env:LOCAL_API_KEY, ssm:/${self:custom.stage}/tmdb/apiKey} API_BASE_URL=${env:LOCAL_API_BASE_URL, ssm:/${self:custom.stage}/tmdb/apiBaseUrl} TMDB_CONFIG_URL=${env:LOCAL_CONFIG_URL, ssm:/${self:custom.stage}/tmdb/configUrl} yarn webpack --config webpack.client.js
 
 provider:
   name: aws
   runtime: nodejs8.10
   stage: dev
   region: us-east-1
+
+  environment:
+    STAGE: ${self:custom.stage}
+    API_KEY: ${env:LOCAL_API_KEY, ssm:/${self:custom.stage}/tmdb/apiKey}
+    API_BASE_URL: ${env:LOCAL_API_BASE_URL, ssm:/${self:custom.stage}/tmdb/apiBaseUrl}
+    TMDB_CONFIG_URL: ${env:LOCAL_CONFIG_URL, ssm:/${self:custom.stage}/tmdb/configUrl}
 
   apiGateway:
     restApiId:
