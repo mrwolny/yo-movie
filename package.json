@@ -13,6 +13,9 @@
     "install": "lerna bootstrap -- --frozen-lockfile",
     "test": "lerna exec -- yarn test",
     "deploy": "lerna exec --scope yo-fe sls deploy && lerna exec --ignore yo-fe sls deploy",
-    "lint": "lerna exec --no-bail -- eslint . --ignore-path .gitignore"
+    "lint": "lerna exec --no-bail -- eslint . --ignore-path .gitignore",
+    "start:fe": "lerna run start:dev --scope yo-fe",
+    "start:api": "lerna run start:dev --scope yo-api-tmdb",
+    "start:dev": "lerna run --parallel start:dev"
   }
 }

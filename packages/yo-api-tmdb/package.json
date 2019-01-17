@@ -13,7 +13,8 @@
   },
   "scripts": {
     "deploy": "sls deploy",
-    "test": "jest"
+    "test": "jest",
+    "start:dev": "sls offline start --env local --port 3000"
   },
   "dependencies": {
     "superagent": "^4.1.0"
