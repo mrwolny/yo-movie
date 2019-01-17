@@ -16,6 +16,12 @@ provider:
   stage: dev
   region: us-east-1
 
+  environment:
+    STAGE: ${self:custom.stage}
+    API_KEY: ${env:LOCAL_API_KEY, ssm:/${self:custom.stage}/tmdb/apiKey}
+    API_BASE_URL: ${env:LOCAL_API_BASE_URL, ssm:/${self:custom.stage}/tmdb/apiBaseUrl}
+    DDB_TABLE_NAME: ${self:custom.stage}-YoMovieConfigTable
+
   apiGateway:
     restApiId:
       Fn::ImportValue: ${self:custom.stage}-YoMovieApiGatewayRestApiId
