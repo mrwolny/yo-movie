@@ -4,6 +4,7 @@ import fs from 'fs';
 import React from 'react';
 import express from 'express';
 import ReactDOMServer from 'react-dom/server';
+import axios from 'axios';
 
 import App from './src/app/App';
 
@@ -16,20 +17,29 @@ app.use(express.static('./dist', {
 }));
 
 app.get('*', (req, res) => {
-  const indexFile = path.resolve('./dist/index.html');
-  fs.readFile(indexFile, 'utf8', (err, data) => {
-    if (err) {
-      console.error('Something went wrong:', err);
-      return res.status(500).send('Oops, better luck next time!');
-    }
+  axios.get(process.env.TMDB_CONFIG_URL)
+    .then(response => ({
+      tmdb: {
+        apiKey: process.env.API_KEY,
+        apiUrl: process.env.API_BASE_URL,
+        configUrl: process.env.TMDB_CONFIG_URL,
+        config: response.data,
+      },
+    })).then((config) => {
+      const indexFile = path.resolve('./dist/index.html');
+      fs.readFile(indexFile, 'utf8', (err, data) => {
+        if (err) {
+          return res.status(500).send('Oops, better luck next time!');
+        }
 
-    const results = data.replace('<div id="root"></div>', `<div id="root">${ReactDOMServer.renderToString(<App />)}</div>`);
+        const results = data
+          .replace('__APP__', `${ReactDOMServer.renderToString(<App config={config} />)}`)
+          .replace('__CONFIG__', `${JSON.stringify(config).replace(/</g, '\\u003c')}`);
 
-    res.set('Cache-Control', 'public, max-age=60');
-    return res.send(
-      results,
-    );
-  });
+        res.set('Cache-Control', 'public, max-age=60');
+        return res.send(results);
+      });
+    });
 });
 
 export default app;
