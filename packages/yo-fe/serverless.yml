@@ -3,6 +3,7 @@ service: yo-movie-fe
 frameworkVersion: ">=1.35.0 <2.0.0"
 
 plugins:
+  - serverless-dotenv-plugin
   - serverless-webpack
   - serverless-offline
   - serverless-plugin-scripts

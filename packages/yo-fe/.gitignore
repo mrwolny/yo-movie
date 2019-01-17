@@ -17,3 +17,5 @@ git
 coverage
 
 yarn-error.log
+
+.env.local
