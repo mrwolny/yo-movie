@@ -2,6 +2,9 @@
   "name": "yo-api-tmdb",
   "version": "1.0.0",
   "main": "index.js",
+  "engines": {
+    "node": "8.10"
+  },
   "license": "MIT",
   "devDependencies": {
     "jest": "^23.6.0",
