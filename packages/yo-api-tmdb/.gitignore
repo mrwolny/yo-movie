@@ -8,3 +8,7 @@ jspm_packages
 coverage
 
 yarn-error.log
+
+.env
+.env.production
+.env.local
