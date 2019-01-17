@@ -28,6 +28,16 @@ provider:
     restApiRootResourceId:
       Fn::ImportValue: ${self:custom.stage}-YoMovieApiGatewayRestApiRootResourceId
 
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource:
+        - Fn::GetAtt: [ YoMovieConfigTable, Arn ]
+
 functions:
   hello:
     handler: handler.config
@@ -35,3 +45,19 @@ functions:
       - http:
           path: tmdb/config
           method: get
+
+resources:
+  Resources:
+    YoMovieConfigTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:custom.stage}-YoMovieConfigTable
+        AttributeDefinitions:
+          - AttributeName: key
+            AttributeType: S
+        KeySchema:
+          - AttributeName: key
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
