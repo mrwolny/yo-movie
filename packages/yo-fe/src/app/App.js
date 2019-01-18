@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import axios from 'axios';
 
 import './App.css';
 
@@ -12,10 +14,12 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch('tmdb/config')
-      .then((data) => {
+    const { config: { tmdb: { configUrl } } } = this.props;
+
+    axios.get(configUrl)
+      .then((response) => {
         this.setState({
-          data,
+          data: response.data,
         });
       });
   }
@@ -26,12 +30,14 @@ class App extends Component {
     return (
       <div className="App">
         <h1>YO!</h1>
-
         <img alt="yo murray" src="https://www.fillmurray.com/600/1000" />
-        <pre>{data}</pre>
       </div>
     );
   }
 }
+
+App.propTypes = {
+  config: PropTypes.object,
+};
 
 export default App;

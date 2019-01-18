@@ -19,6 +19,7 @@
   "dependencies": {
     "aws-sdk": "^2.388.0",
     "axios": "^0.18.0",
+    "lodash.get": "^4.4.2",
     "superagent": "^4.1.0"
   }
 }

@@ -9,6 +9,7 @@ plugins:
 custom:
   stage: ${opt:stage, self:provider.stage}
   region: ${opt:region, self:provider.region}
+  tableName: ${self:custom.stage}-YoMovieConfigTable
 
 provider:
   name: aws
@@ -18,9 +19,10 @@ provider:
 
   environment:
     STAGE: ${self:custom.stage}
-    API_KEY: ${env:LOCAL_API_KEY, ssm:/${self:custom.stage}/tmdb/apiKey}
-    API_BASE_URL: ${env:LOCAL_API_BASE_URL, ssm:/${self:custom.stage}/tmdb/apiBaseUrl}
-    DDB_TABLE_NAME: ${self:custom.stage}-YoMovieConfigTable
+    API_KEY: ${env:API_KEY, ssm:/${self:custom.stage}/tmdb/apiKey}
+    API_BASE_URL: ${env:API_BASE_URL, ssm:/${self:custom.stage}/tmdb/apiBaseUrl}
+    CONFIG_TTL: ${env:CONFIG_TTL, ssm:/${self:custom.stage}/tmdb/conifigTimeToLive}
+    DDB_TABLE_NAME: ${env:DDB_TABLE_NAME, self:custom.tableName}
 
   apiGateway:
     restApiId:
@@ -53,11 +55,14 @@ resources:
       Properties:
         TableName: ${self:custom.stage}-YoMovieConfigTable
         AttributeDefinitions:
-          - AttributeName: key
+          - AttributeName: Key
             AttributeType: S
         KeySchema:
-          - AttributeName: key
+          - AttributeName: Key
             KeyType: HASH
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
+        TimeToLiveSpecification:
+          AttributeName: TimeToLive
+          Enabled: 'false'
