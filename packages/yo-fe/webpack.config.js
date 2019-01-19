@@ -1,8 +1,7 @@
 /* eslint-disable */
 var webpack = require('webpack')
 const slsw = require('serverless-webpack');
-var nodeExternals = require('webpack-node-externals')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const nodeExternals = require('webpack-node-externals');
 
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
@@ -20,19 +19,9 @@ var serverConfig = {
         include: __dirname,
         exclude: /node_modules/
       },
-      { test: /\.css$/, use: [
-        { loader: MiniCssExtractPlugin.loader },
-        'css-loader'
-      ]}
-    ]
+    ],
   },
   plugins: [
-    new MiniCssExtractPlugin({
-      // Options similar to the same options in webpackOptions.output
-      // both options are optional
-      filename: '[name].css',
-      chunkFilename: '[id].css'
-    }),
     new webpack.DefinePlugin({
       __isBrowser__: 'false'
     }),
