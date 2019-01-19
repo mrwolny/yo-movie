@@ -5,7 +5,7 @@ import axios from 'axios';
 import GlobalStyle from './GlobalStyle';
 
 class App extends Component {
-  componentDidMount() {
+  async componentDidMount() {
     const { config: { tmdb: { configUrl } } } = this.props;
 
     axios.get(configUrl)
