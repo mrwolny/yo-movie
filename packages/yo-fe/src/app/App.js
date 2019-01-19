@@ -4,15 +4,9 @@ import axios from 'axios';
 
 import './App.css';
 
+import GlobalStyle from './GlobalStyle';
+
 class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      data: null,
-    };
-  }
-
   componentDidMount() {
     const { config: { tmdb: { configUrl } } } = this.props;
 
@@ -28,10 +22,14 @@ class App extends Component {
     const { data } = this.state;
 
     return (
-      <div className="App">
-        <h1>YO!</h1>
-        <img alt="yo murray" src="https://www.fillmurray.com/600/1000" />
-      </div>
+      <>
+        <GlobalStyle />
+        <div className="App">
+          <h1>YO!</h1>
+          <Catalogue />
+          <img alt="yo murray" src="https://www.fillmurray.com/600/1000" />
+        </div>
+      </>
     );
   }
 }

@@ -4,6 +4,8 @@ import fs from 'fs';
 import React from 'react';
 import express from 'express';
 import ReactDOMServer from 'react-dom/server';
+import { ServerStyleSheet } from 'styled-components';
+
 import axios from 'axios';
 
 import App from './src/app/App';
@@ -32,8 +34,10 @@ app.get('*', (req, res) => {
           return res.status(500).send('Oops, better luck next time!');
         }
 
+        const sheet = new ServerStyleSheet();
+
         const results = data
-          .replace('__APP__', `${ReactDOMServer.renderToString(<App config={config} />)}`)
+          .replace('__APP__', `${ReactDOMServer.renderToString(sheet.collectStyles(<App config={config} />))}`)
           .replace('__CONFIG__', `${JSON.stringify(config).replace(/</g, '\\u003c')}`);
 
         res.set('Cache-Control', 'public, max-age=60');
