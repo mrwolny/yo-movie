@@ -1,39 +1,44 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
+
+import ConfigContext from './context/ConfigContext';
+import Catalogue from './components/Catalogue';
 
 import GlobalStyle from './GlobalStyle';
 
 class App extends Component {
-  async componentDidMount() {
-    const { config: { tmdb: { configUrl } } } = this.props;
-
-    axios.get(configUrl)
-      .then((response) => {
-        this.setState({
-          data: response.data,
-        });
-      });
+  componentDidMount() {
+    console.log('yo movie!');
   }
 
   render() {
-    const { data } = this.state;
+    const { config: { tmdb } } = this.props;
 
     return (
       <>
         <GlobalStyle />
-        <div className="App">
-          <h1>YO!</h1>
-          <Catalogue />
-          <img alt="yo murray" src="https://www.fillmurray.com/600/1000" />
-        </div>
+        <ConfigContext.Provider value={tmdb}>
+          <div className="App">
+            <h1>YO!</h1>
+            <Catalogue />
+            <img alt="yo murray" src="https://www.fillmurray.com/600/1000" />
+          </div>
+        </ConfigContext.Provider>
       </>
     );
   }
 }
 
 App.propTypes = {
-  config: PropTypes.object,
+  config: PropTypes.shape({
+    tmdb: PropTypes.shape({
+      apiKey: PropTypes.string,
+      apiUrl: PropTypes.string,
+      config: PropTypes.shape({
+        images: PropTypes.object,
+      }),
+    }),
+  }).isRequired,
 };
 
 export default App;
