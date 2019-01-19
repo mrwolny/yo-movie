@@ -38,7 +38,11 @@ app.get('*', (req, res) => {
 
         const results = data
           .replace('__APP__', `${ReactDOMServer.renderToString(sheet.collectStyles(<App config={config} />))}`)
-          .replace('__CONFIG__', `${JSON.stringify(config).replace(/</g, '\\u003c')}`);
+          .replace('__CONFIG__', `${JSON.stringify(config).replace(/</g, '\\u003c')}`)
+          .replace(
+            '__LIVE_RELOAD__',
+            `${process.env.NODE_ENV === 'development' ? '<script src="http://localhost:35729/livereload.js"></script>' : ''}`,
+          );
 
         res.set('Cache-Control', 'public, max-age=60');
         return res.send(results);

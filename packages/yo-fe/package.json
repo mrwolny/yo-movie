@@ -30,6 +30,7 @@
     "serverless-webpack": "^5.2.0",
     "webpack": "^4.28.3",
     "webpack-cli": "^3.2.0",
+    "webpack-livereload-plugin": "^2.2.0",
     "webpack-node-externals": "^1.7.2"
   },
   "dependencies": {
@@ -44,8 +45,8 @@
   "scripts": {
     "test": "jest",
     "deploy": "sls deploy",
-    "start:dev:fe": "webpack --config webpack.client.js --watch",
-    "start:dev:server": "sls offline start --env local --port 4000",
-    "start:dev": "yarn start:dev:fe | yarn start:dev:server"
+     "start:dev:fe": "webpack --config webpack.client.js --env.local --watch",
+      "start:dev:server": "sls offline start --env local --port 4000 --dontPrintOutput",
+      "start:dev": "yarn start:dev:fe | yarn start:dev:server"
   }
 }

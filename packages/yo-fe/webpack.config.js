@@ -1,11 +1,10 @@
-/* eslint-disable */
-var webpack = require('webpack')
+const webpack = require('webpack');
 const slsw = require('serverless-webpack');
 const nodeExternals = require('webpack-node-externals');
 
-const CopyWebpackPlugin = require('copy-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-var serverConfig = {
+const serverConfig = {
   entry: slsw.lib.entries,
   target: 'node',
   devtool: 'source-map',
@@ -17,19 +16,19 @@ var serverConfig = {
         test: /\.(js)$/,
         use: 'babel-loader',
         include: __dirname,
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
     ],
   },
   plugins: [
     new webpack.DefinePlugin({
-      __isBrowser__: 'false'
+      __isBrowser__: 'false',
     }),
     // serverless-webpack deployment
     new CopyWebpackPlugin([
-      'dist/*'
-    ])
-  ]
-}
+      'dist/*',
+    ]),
+  ],
+};
 
 module.exports = serverConfig;
