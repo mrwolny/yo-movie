@@ -19,9 +19,9 @@ provider:
 
   environment:
     STAGE: ${self:custom.stage}
-    API_KEY: ${env:API_KEY, ssm:/${self:custom.stage}/tmdb/apiKey}
-    API_BASE_URL: ${env:API_BASE_URL, ssm:/${self:custom.stage}/tmdb/apiBaseUrl}
-    CONFIG_TTL: ${env:CONFIG_TTL, ssm:/${self:custom.stage}/tmdb/conifigTimeToLive}
+    API_KEY: ${env:API_KEY, ssm:/${self:custom.stage}/yo-movie/tmdb/apiKey}
+    API_BASE_URL: ${env:API_BASE_URL, ssm:/${self:custom.stage}/yo-movie/tmdb/apiBaseUrl}
+    CONFIG_TTL: ${env:CONFIG_TTL, ssm:/${self:custom.stage}/yo-movie/tmdb/configTimeToLive}
     DDB_TABLE_NAME: ${env:DDB_TABLE_NAME, self:custom.tableName}
 
   apiGateway:

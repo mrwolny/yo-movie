@@ -17,7 +17,7 @@ custom:
   scripts:
     hooks:
       'package:initialize':
-        yarn rimraf dist && API_KEY=${env:LOCAL_API_KEY, ssm:/${self:custom.stage}/tmdb/apiKey} API_BASE_URL=${env:LOCAL_API_BASE_URL, ssm:/${self:custom.stage}/tmdb/apiBaseUrl} TMDB_CONFIG_URL=${env:LOCAL_CONFIG_URL, ssm:/${self:custom.stage}/tmdb/configUrl} yarn webpack --config webpack.client.js
+        yarn rimraf dist && API_KEY=${env:LOCAL_API_KEY, ssm:/${self:custom.stage}/yo-movie/tmdb/apiKey} API_BASE_URL=${env:LOCAL_API_BASE_URL, ssm:/${self:custom.stage}/yo-movie/tmdb/apiBaseUrl} TMDB_CONFIG_URL=${env:LOCAL_CONFIG_URL, ssm:/${self:custom.stage}/yo-movie/tmdb/configUrl} yarn webpack --config webpack.client.js
 
 provider:
   name: aws
@@ -27,9 +27,9 @@ provider:
 
   environment:
     STAGE: ${self:custom.stage}
-    API_KEY: ${env:LOCAL_API_KEY, ssm:/${self:custom.stage}/tmdb/apiKey}
-    API_BASE_URL: ${env:LOCAL_API_BASE_URL, ssm:/${self:custom.stage}/tmdb/apiBaseUrl}
-    TMDB_CONFIG_URL: ${env:LOCAL_CONFIG_URL, ssm:/${self:custom.stage}/tmdb/configUrl}
+    API_KEY: ${env:LOCAL_API_KEY, ssm:/${self:custom.stage}/yo-movie/tmdb/apiKey}
+    API_BASE_URL: ${env:LOCAL_API_BASE_URL, ssm:/${self:custom.stage}/yo-movie/tmdb/apiBaseUrl}
+    TMDB_CONFIG_URL: ${env:LOCAL_CONFIG_URL, ssm:/${self:custom.stage}/yo-movie/tmdb/configUrl}
 
   apiGateway:
     restApiId:
