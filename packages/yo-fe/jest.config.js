@@ -3,4 +3,7 @@ module.exports = {
   transform: {
     '^.+\\.js$': 'babel-jest',
   },
+  setupFiles: [
+    './src/setupTest.js',
+  ],
 };
