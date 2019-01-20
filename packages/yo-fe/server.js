@@ -1,3 +1,5 @@
+import '@babel/polyfill';
+
 import path from 'path';
 import fs from 'fs';
 
@@ -25,7 +27,7 @@ app.get('*', (req, res) => {
         apiKey: process.env.API_KEY,
         apiUrl: process.env.API_BASE_URL,
         configUrl: process.env.TMDB_CONFIG_URL,
-        config: response.data,
+        config: response.data.config,
       },
     })).then((config) => {
       const indexFile = path.resolve('./dist/index.html');

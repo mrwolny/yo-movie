@@ -8,7 +8,7 @@ const tmdbClient = (apiUrl, apiKey) => {
   };
 
   return {
-    searchMovie: async ({ query, page, language }) => {
+    searchMovies: async ({ query, page, language }) => {
       const results = await axios(
         getMovieSearchUrl({ query, page, language }),
         {

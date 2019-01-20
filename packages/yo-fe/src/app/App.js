@@ -15,16 +15,12 @@ class App extends Component {
     const { config: { tmdb } } = this.props;
 
     return (
-      <>
+      <div className="App">
         <GlobalStyle />
         <ConfigContext.Provider value={tmdb}>
-          <div className="App">
-            <h1>YO!</h1>
-            <Catalogue />
-            <img alt="yo murray" src="https://www.fillmurray.com/600/1000" />
-          </div>
+          <Catalogue />
         </ConfigContext.Provider>
-      </>
+      </div>
     );
   }
 }
