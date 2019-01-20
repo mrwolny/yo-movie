@@ -7,6 +7,13 @@
   },
   "rules": {
     "no-underscore-dangle": "off",
-    "react/jsx-filename-extension": ["error", { "extensions": [".js"] }]
+    "react/jsx-filename-extension": ["error", { "extensions": [".js"] }],
+    "comma-dangle": ["error", {
+      "arrays": "always-multiline",
+      "objects": "always-multiline",
+      "imports": "never",
+      "exports": "never",
+      "functions": "never"
+    }]
   }
 }
