@@ -6,7 +6,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const LiveReloadPlugin = require('webpack-livereload-plugin');
 
 module.exports = (env = {}) => ({
-  entry: './src/app/index.js',
+  entry: ['@babel/polyfill', './src/app/index.js'],
   devtool: 'source-map',
   output: {
     path: path.resolve(__dirname, 'dist'),
