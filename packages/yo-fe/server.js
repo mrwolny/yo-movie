@@ -41,7 +41,7 @@ app.get('*', (req, res) => {
           .replace('__CONFIG__', `${JSON.stringify(config).replace(/</g, '\\u003c')}`)
           .replace(
             '__LIVE_RELOAD__',
-            `${process.env.NODE_ENV === 'development' ? '<script src="http://localhost:35729/livereload.js"></script>' : ''}`,
+            `${process.env.NODE_ENV === 'development' ? '<script src="http://localhost:35729/livereload.js"></script>' : ''}`
           );
 
         res.set('Cache-Control', 'public, max-age=60');
