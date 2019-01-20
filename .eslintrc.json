@@ -3,8 +3,10 @@
   "env": {
       "browser": true,
       "node": true,
-      "jest": true
+      "jest": true,
+      "es6": true
   },
+  "parser": "babel-eslint",
   "rules": {
     "no-underscore-dangle": "off",
     "react/jsx-filename-extension": ["error", { "extensions": [".js"] }],
