@@ -31,6 +31,13 @@
           });
       }
     </script>
+
+    <script>
+        if (!('IntersectionObserver' in self)) {
+          import('https://polyfill.io/v2/polyfill.min.js?features=IntersectionObserver');
+        }
+    </script>
+
     __LIVE_RELOAD__
   </body>
 </html>
