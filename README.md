@@ -34,6 +34,11 @@ This will start two `serverless offline` processes for both packages resulting i
 
 - Support for livereload when running with `start:dev`.
 
+## Testing
+
+All tests with `jest`. FE uses `Enzyme`.
+
+You can provide `--watch` parameter to `yarn test` in order to enable watch mode.
 
 ## Build & Deploy
 
