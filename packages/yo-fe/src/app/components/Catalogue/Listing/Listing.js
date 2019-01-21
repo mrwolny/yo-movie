@@ -4,12 +4,14 @@ import PropTypes from 'prop-types';
 import Movie from './Movie';
 import IntersectionTrigger from '../../shared/IntersectionTrigger';
 
+import StyledListing from './StyledListing';
+
 const Listing = ({ fetching, results, loadMoreHandler }) => (
-  <div>
-    { results && results.map(movie => <Movie title={movie.title} poster={movie.poster_path} />) }
+  <StyledListing>
+    { results && results.map(movie => <Movie title={movie.title} poster={movie.poster_path} key={`${movie.title}-${movie.poster_path}`} />) }
     { fetching && <h2>Loading...</h2> }
     <IntersectionTrigger handler={loadMoreHandler} />
-  </div>
+  </StyledListing>
 );
 
 Listing.propTypes = {

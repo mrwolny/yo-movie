@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import StyledInput from './StyledInput';
+
 export default class Search extends Component {
   handleQueryChange = (event) => {
     const {
@@ -15,7 +17,16 @@ export default class Search extends Component {
   render() {
     const { queryString } = this.props;
 
-    return <input type="text" value={queryString} onChange={this.handleQueryChange} />;
+    return (
+      <>
+        <StyledInput
+          type="text"
+          value={queryString}
+          onChange={this.handleQueryChange}
+          placeholder="Yo! Movie?"
+        />
+      </>
+    );
   }
 }
 

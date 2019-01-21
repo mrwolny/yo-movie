@@ -28,7 +28,7 @@ export default class IntersectionTrigger extends Component {
   }
 
   render() {
-    return <div ref={this.loadMoreRef}>LoadMore</div>;
+    return <div ref={this.loadMoreRef} />;
   }
 }
 
