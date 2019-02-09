@@ -15,7 +15,7 @@ describe('yo-api-tmdb/lib/tmdbConfig', () => {
   beforeEach(() => {
     originalDate = Date;
     global.Date = jest.fn();
-    global.Date.now = jest.fn(() => 1000);
+    global.Date.now = jest.fn(() => 1000000000000);
 
     mockDynamoDbSdk = {
       getItem: jest.fn(() => ({ promise: mockDynamoDbGetItem })),
@@ -40,7 +40,7 @@ describe('yo-api-tmdb/lib/tmdbConfig', () => {
     mockDynamoDbGetItem.mockResolvedValueOnce({
       Item: {
         Config: { S: JSON.stringify({ config: { yo: 'movie' } }) },
-        TimeToLive: { S: 1110 },
+        TimeToLive: { S: 1000000000110 },
       },
     });
 
@@ -60,7 +60,7 @@ describe('yo-api-tmdb/lib/tmdbConfig', () => {
       mockDynamoDbGetItem.mockResolvedValueOnce({
         Item: {
           Config: { S: JSON.stringify({ config: { yo: 'movie' } }) },
-          TimeToLive: { S: 1110 },
+          TimeToLive: { S: 1000000000110 },
         },
       });
     });
@@ -86,7 +86,7 @@ describe('yo-api-tmdb/lib/tmdbConfig', () => {
       mockDynamoConfig: {
         Item: {
           Config: { S: JSON.stringify({ config: { yo: 'movie' } }) },
-          TimeToLive: { S: 990 },
+          TimeToLive: { S: 9000009 },
         },
       },
     },
@@ -127,7 +127,7 @@ describe('yo-api-tmdb/lib/tmdbConfig', () => {
             S: JSON.stringify({ config: 'from API' }),
           },
           TimeToLive: {
-            S: '1120',
+            S: '1000000120',
           },
         },
       });

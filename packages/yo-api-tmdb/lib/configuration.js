@@ -19,7 +19,7 @@ module.exports = async (dynamoDb, logger = console) => {
   const config = _get(dynamoData, ['Item', 'Config', 'S']);
   const ttl = _get(dynamoData, ['Item', 'TimeToLive', 'S']);
 
-  if (!config || ttl < Date.now()) {
+  if (!config || ttl < (Date.now() / 1000)) {
     let data;
 
     try {
@@ -46,7 +46,7 @@ module.exports = async (dynamoDb, logger = console) => {
           S: JSON.stringify(data),
         },
         TimeToLive: {
-          S: `${Math.floor((Date.now() / 1000)) + process.env.CONFIG_TTL}`,
+          S: `${Math.floor((Date.now() / 1000)) + parseInt(process.env.CONFIG_TTL, 10)}`,
         },
       },
     };
