@@ -1,4 +1,4 @@
-# YO! Movie
+# YO! MovieYo
 
 ## Info
 
